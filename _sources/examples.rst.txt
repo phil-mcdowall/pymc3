@@ -8,6 +8,7 @@ Howto
 =====
 
 .. toctree::
+   notebooks/api_quickstart.ipynb
    notebooks/sampler-stats.ipynb
    notebooks/Diagnosing_biased_Inference_with_Divergences.ipynb
    notebooks/posterior_predictive.ipynb
@@ -21,6 +22,7 @@ Applied
 
 .. toctree::
    notebooks/BEST.ipynb
+   notebooks/multilevel_modeling.ipynb
    notebooks/stochastic_volatility.ipynb
    notebooks/probabilistic-matrix-factorization.ipynb
    notebooks/rugby_analytics.ipynb

@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PyMC3 3.1rc3 documentation" href="../index.html"/>
         <link rel="up" title="Getting started" href="../getting_started.html"/>
-        <link rel="next" title="Examples" href="../examples.html"/>
+        <link rel="next" title="API quickstart" href="api_quickstart.html"/>
         <link rel="prev" title="Getting started" href="../getting_started.html"/> 
 
   
@@ -120,6 +120,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#References">References</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="api_quickstart.html">API quickstart</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
@@ -585,7 +586,7 @@ Python code corresponds to a line in the model notation above.</p>
 explain each part line-by-line.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [4]:
+<span></span>In [10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -719,7 +720,7 @@ class Normal(pymc3.distributions.distribution.Continuous)
  |
  |  Methods defined here:
  |
- |  __init__(self, *args, **kwargs)
+ |  __init__(self, mu=0, sd=None, tau=None, **kwargs)
  |      Initialize self.  See help(type(self)) for accurate signature.
  |
  |  logp(self, value)
@@ -841,7 +842,7 @@ Optimization terminated successfully.
          Iterations: 16
          Function evaluations: 21
          Gradient evaluations: 21
-{&#39;alpha&#39;: array(0.9065985497559482), &#39;beta&#39;: array([ 0.94848602,  2.60705514]), &#39;sigma_log_&#39;: array(-0.03278147017403066)}
+{&#39;alpha&#39;: array(0.9065985497559482), &#39;beta&#39;: array([ 0.94848602,  2.60705514]), &#39;sigma_log__&#39;: array(-0.03278147017403069)}
 </pre></div></div>
 </div>
 <p>By default, <code class="docutils literal"><span class="pre">find_MAP</span></code> uses the Broyden–Fletcher–Goldfarb–Shanno
@@ -872,7 +873,7 @@ Optimization terminated successfully.
          Current function value: 149.019762
          Iterations: 4
          Function evaluations: 176
-{&#39;alpha&#39;: array(0.9090521898977764), &#39;beta&#39;: array([ 0.95140146,  2.61437458]), &#39;sigma_log_&#39;: array(-0.030009775203258385)}
+{&#39;alpha&#39;: array(0.9090521898977764), &#39;beta&#39;: array([ 0.95140146,  2.61437458]), &#39;sigma_log__&#39;: array(-0.030009775203258385)}
 </pre></div></div>
 </div>
 <p>It is important to note that the MAP estimate is not always reasonable,
@@ -950,7 +951,7 @@ we don&#8217;t supply it via the <code class="docutils literal"><span class="pre
 example of how to explicitly assign step methods).</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [8]:
+<span></span>In [11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -958,8 +959,8 @@ example of how to explicitly assign step methods).</p>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
 
 <span class="k">with</span> <span class="n">basic_model</span><span class="p">:</span>
-    <span class="c1"># draw 2000 posterior samples</span>
-    <span class="n">trace</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+    <span class="c1"># draw 500 posterior samples</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">sample</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -969,10 +970,10 @@ example of how to explicitly assign step methods).</p>
 <div class="stderr output_area docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
-Initializing NUTS using advi...
-Average ELBO = -153.48: 100%|██████████| 200000/200000 [00:17&lt;00:00, 11639.06it/s]
-Finished [100%]: Average ELBO = -153.51
-100%|██████████| 2000/2000 [00:03&lt;00:00, 522.55it/s]
+Initializing NUTS using ADVI...
+Average Loss = 153.48: 100%|██████████| 200000/200000 [00:22&lt;00:00, 8763.36it/s]
+Finished [100%]: Average Loss = 153.48
+100%|██████████| 1000/1000 [00:01&lt;00:00, 846.31it/s]
 </pre></div></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">sample</span></code> function runs the step method(s) assigned (or passed) to
@@ -985,7 +986,7 @@ match the shape of the variable. We can see the last 5 values for the
 <code class="docutils literal"><span class="pre">alpha</span></code> variable as follows:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [9]:
+<span></span>In [12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -995,11 +996,11 @@ match the shape of the variable. We can see the last 5 values for the
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>Out[9]:
+<span></span>Out[12]:
 </pre></div>
 </div>
 <div class="output_area highlight-none"><div class="highlight"><pre>
-<span></span>array([ 0.87254059,  0.92100952,  0.90321028,  0.90372965,  0.86679235])
+<span></span>array([ 0.82060795,  1.09248939,  0.82522847,  0.95876543,  0.9570874 ])
 </pre></div>
 </div>
 </div>
@@ -1008,7 +1009,7 @@ NUTS (which was assigned automatically), we could have specified this as
 the <code class="docutils literal"><span class="pre">step</span></code> argument for <code class="docutils literal"><span class="pre">sample</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [10]:
+<span></span>In [13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1053,7 +1054,7 @@ Optimization terminated successfully.
 </div>
 <div class="stderr output_area docutils container">
 <div class="highlight"><pre>
-100%|██████████| 5000/5000 [00:11&lt;00:00, 443.78it/s]
+100%|██████████| 5500/5500 [00:08&lt;00:00, 647.03it/s]
 </pre></div></div>
 </div>
 </div>
@@ -1065,7 +1066,7 @@ the sampling output. A simple posterior plot can be created using
 <code class="docutils literal"><span class="pre">traceplot</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [11]:
+<span></span>In [14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1092,7 +1093,7 @@ predictor coefficients.</p>
 common posterior statistics:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [12]:
+<span></span>In [15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1113,13 +1114,13 @@ alpha:
   Mean             SD               MC Error         95% HPD interval
   -------------------------------------------------------------------
 
-  0.905            0.099            0.002            [0.727, 1.120]
+  0.905            0.099            0.001            [0.706, 1.094]
 
   Posterior quantiles:
   2.5            25             50             75             97.5
   |--------------|==============|==============|--------------|
 
-  0.709          0.839          0.904          0.971          1.106
+  0.711          0.836          0.904          0.970          1.102
 
 
 beta:
@@ -1127,15 +1128,15 @@ beta:
   Mean             SD               MC Error         95% HPD interval
   -------------------------------------------------------------------
 
-  0.948            0.087            0.001            [0.767, 1.112]
-  2.591            0.510            0.018            [1.653, 3.601]
+  0.950            0.088            0.001            [0.780, 1.123]
+  2.604            0.516            0.006            [1.559, 3.582]
 
   Posterior quantiles:
   2.5            25             50             75             97.5
   |--------------|==============|==============|--------------|
 
-  0.777          0.890          0.949          1.006          1.123
-  1.602          2.249          2.591          2.960          3.555
+  0.777          0.890          0.950          1.010          1.120
+  1.594          2.250          2.604          2.953          3.626
 
 
 sigma:
@@ -1143,13 +1144,13 @@ sigma:
   Mean             SD               MC Error         95% HPD interval
   -------------------------------------------------------------------
 
-  0.990            0.072            0.001            [0.853, 1.129]
+  0.990            0.072            0.001            [0.853, 1.132]
 
   Posterior quantiles:
   2.5            25             50             75             97.5
   |--------------|==============|==============|--------------|
 
-  0.863          0.940          0.986          1.036          1.142
+  0.862          0.939          0.985          1.035          1.145
 
 </pre></div></div>
 </div>
@@ -1192,9 +1193,9 @@ latent log volatility process.</p>
 financial crisis. Here, we use <code class="docutils literal"><span class="pre">pandas-datareader</span></code> to obtain the price
 data from Yahoo!-Finance; it can be installed with
 <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pandas-datareader</span></code>.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [13]:
+<span></span>In [16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1206,9 +1207,37 @@ data from Yahoo!-Finance; it can be installed with
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Collecting pandas-datareader
+  Downloading pandas_datareader-0.3.0.post0-py2.py3-none-any.whl (70kB)
+    100% |████████████████████████████████| 71kB 951kB/s ta 0:00:01
+Requirement already satisfied: requests&gt;=2.3.0 in /Users/twiecki/anaconda/lib/python3.6/site-packages (from pandas-datareader)
+Collecting requests-file (from pandas-datareader)
+  Downloading requests-file-1.4.2.tar.gz
+Collecting requests-ftp (from pandas-datareader)
+  Downloading requests-ftp-0.3.1.tar.gz
+Requirement already satisfied: pandas in /Users/twiecki/anaconda/lib/python3.6/site-packages (from pandas-datareader)
+Requirement already satisfied: six in /Users/twiecki/anaconda/lib/python3.6/site-packages (from requests-file-&gt;pandas-datareader)
+Requirement already satisfied: python-dateutil&gt;=2 in /Users/twiecki/anaconda/lib/python3.6/site-packages (from pandas-&gt;pandas-datareader)
+Requirement already satisfied: pytz&gt;=2011k in /Users/twiecki/anaconda/lib/python3.6/site-packages (from pandas-&gt;pandas-datareader)
+Requirement already satisfied: numpy&gt;=1.7.0 in /Users/twiecki/anaconda/lib/python3.6/site-packages (from pandas-&gt;pandas-datareader)
+Building wheels for collected packages: requests-file, requests-ftp
+  Running setup.py bdist_wheel for requests-file ... - \ done
+  Stored in directory: /Users/twiecki/Library/Caches/pip/wheels/3e/34/3a/c2e634ca7b545510c1b3b7d94dea084e5fdb5f33558f3c3a81
+  Running setup.py bdist_wheel for requests-ftp ... - \ done
+  Stored in directory: /Users/twiecki/Library/Caches/pip/wheels/76/fb/0d/1026eb562c34a4982dc9d39c9c582a734eefe7f0455f711deb
+Successfully built requests-file requests-ftp
+Installing collected packages: requests-file, requests-ftp, pandas-datareader
+Successfully installed pandas-datareader-0.3.0.post0 requests-file-1.4.2 requests-ftp-0.3.1
+</pre></div></div>
+</div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [14]:
+<span></span>In [17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1230,7 +1259,7 @@ data from Yahoo!-Finance; it can be installed with
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [15]:
+<span></span>In [18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1282,7 +1311,7 @@ terms of the precision of the normally distributed innovations and can
 be a scalar or vector.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [16]:
+<span></span>In [19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1316,7 +1345,7 @@ into two lines, as we did for the first example.</p>
 <h3>Fitting<a class="headerlink" href="#Fitting" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [17]:
+<span></span>In [20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1334,17 +1363,17 @@ into two lines, as we did for the first example.</p>
 <div class="stderr output_area docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
-Initializing NUTS using advi...
-Average ELBO = 883.19: 100%|██████████| 200000/200000 [00:45&lt;00:00, 4380.24it/s]
-Finished [100%]: Average ELBO = 883.43
-100%|██████████| 2000/2000 [03:20&lt;00:00, 15.80it/s]
+Initializing NUTS using ADVI...
+Average Loss = -912.35: 100%|██████████| 200000/200000 [00:55&lt;00:00, 3627.95it/s]
+Finished [100%]: Average Loss = -912.3
+100%|██████████| 2500/2500 [02:20&lt;00:00, 17.74it/s]
 </pre></div></div>
 </div>
 <p>We can check our samples by looking at the traceplot for <code class="docutils literal"><span class="pre">nu</span></code> and
 <code class="docutils literal"><span class="pre">sigma</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [18]:
+<span></span>In [21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1366,7 +1395,7 @@ partially transparent (via the <code class="docutils literal"><span class="pre">
 more darkly.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [19]:
+<span></span>In [22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1380,11 +1409,11 @@ more darkly.</p>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>Out[19]:
+<span></span>Out[22]:
 </pre></div>
 </div>
 <div class="output_area highlight-none"><div class="highlight"><pre>
-<span></span>&lt;matplotlib.legend.Legend at 0x7f0a0935e780&gt;
+<span></span>&lt;matplotlib.legend.Legend at 0x1277874a8&gt;
 </pre></div>
 </div>
 </div>
@@ -1415,7 +1444,7 @@ the change occurred. At the same time, we will see how to handle missing
 data, use multiple samplers and sample from discrete random variables.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [20]:
+<span></span>In [23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1436,11 +1465,11 @@ data, use multiple samplers and sample from discrete random variables.</p>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>Out[20]:
+<span></span>Out[23]:
 </pre></div>
 </div>
 <div class="output_area highlight-none"><div class="highlight"><pre>
-<span></span>&lt;matplotlib.text.Text at 0x7f0a05f0ef60&gt;
+<span></span>&lt;matplotlib.text.Text at 0x12205a1d0&gt;
 </pre></div>
 </div>
 </div>
@@ -1481,7 +1510,7 @@ discrete-uniform priors and the novel form of the deterministic random
 variable <code class="docutils literal"><span class="pre">rate</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [21]:
+<span></span>In [24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1524,7 +1553,7 @@ Metropolis-Hastings, because it is designed to handle discrete values.
 <code class="docutils literal"><span class="pre">PyMC3</span></code> automatically assigns the correct sampling algorithms.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [23]:
+<span></span>In [25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1541,10 +1570,10 @@ Metropolis-Hastings, because it is designed to handle discrete values.
 <div class="stderr output_area docutils container">
 <div class="highlight"><pre>
 Assigned Metropolis to switchpoint
-Assigned NUTS to early_rate_log_
-Assigned NUTS to late_rate_log_
+Assigned NUTS to early_rate_log__
+Assigned NUTS to late_rate_log__
 Assigned Metropolis to disasters_missing
-100%|██████████| 10000/10000 [00:13&lt;00:00, 758.15it/s]
+100%|██████████| 10500/10500 [00:59&lt;00:00, 176.92it/s]
 </pre></div></div>
 </div>
 <p>In the trace plot below we can see that there&#8217;s about a 10 year span
@@ -1554,7 +1583,7 @@ because of the jumpy relationship between the year switchpoint and the
 likelihood and not due to sampling error.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [24]:
+<span></span>In [26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1586,7 +1615,7 @@ of the available
 types</a>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [25]:
+<span></span>In [27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1648,11 +1677,10 @@ numerical approximation. In these cases, it is impossible to write the
 function in terms of predefined theano operators and we must use a
 custom theano operator using <code class="docutils literal"><span class="pre">as_op</span></code> or inheriting from <code class="docutils literal"><span class="pre">theano.Op</span></code>.</p>
 <p>Implementing the <code class="docutils literal"><span class="pre">beta</span></code> variable above as a <code class="docutils literal"><span class="pre">Continuous</span></code> subclass is
-shown below, along with a sub-function using the <code class="docutils literal"><span class="pre">as_op</span></code> decorator,
-though this is not strictly necessary.</p>
+shown below, along with a sub-function.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [26]:
+<span></span>In [28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1668,7 +1696,7 @@ though this is not strictly necessary.</p>
         <span class="n">mu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span>
         <span class="k">return</span> <span class="n">beta_logp</span><span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span>
 
-<span class="nd">@as_op</span><span class="p">(</span><span class="n">itypes</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="o">.</span><span class="n">dscalar</span><span class="p">],</span> <span class="n">otypes</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="o">.</span><span class="n">dscalar</span><span class="p">])</span>
+
 <span class="k">def</span> <span class="nf">beta_logp</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
@@ -1678,6 +1706,11 @@ though this is not strictly necessary.</p>
 </pre></div>
 </div>
 </div>
+<p>If your logp can not be expressed in Theano, you can decorate the
+function with <code class="docutils literal"><span class="pre">as_op</span></code> as follows:
+<code class="docutils literal"><span class="pre">&#64;as_op(itypes=[T.dscalar],</span> <span class="pre">otypes=[T.dscalar])</span></code>. Note, that this will
+create a blackbox Python function that will be much slower and not
+provide the gradients necessary for e.g. NUTS.</p>
 </div>
 <div class="section" id="Generalized-Linear-Models">
 <h2>Generalized Linear Models<a class="headerlink" href="#Generalized-Linear-Models" title="Permalink to this headline">¶</a></h2>
@@ -1691,7 +1724,7 @@ implemented via the <code class="docutils literal"><span class="pre">patsy</span
 <code class="docutils literal"><span class="pre">DataFrame</span></code>. Hence, for our linear regression example:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [27]:
+<span></span>In [29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1705,15 +1738,15 @@ implemented via the <code class="docutils literal"><span class="pre">patsy</span
 <p>The model can then be very concisely specified in one line of code.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [28]:
+<span></span>In [32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pymc3.glm</span> <span class="kn">import</span> <span class="n">glm</span>
+<span></span><span class="kn">from</span> <span class="nn">pymc3.glm</span> <span class="kn">import</span> <span class="n">GLM</span>
 
 <span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model_glm</span><span class="p">:</span>
-    <span class="n">glm</span><span class="p">(</span><span class="s1">&#39;y ~ x1 + x2&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
-    <span class="n">trace</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;y ~ x1 + x2&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">sample</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1723,10 +1756,10 @@ implemented via the <code class="docutils literal"><span class="pre">patsy</span
 <div class="stderr output_area docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
-Initializing NUTS using advi...
-Average ELBO = -190.04: 100%|██████████| 200000/200000 [00:21&lt;00:00, 9506.68it/s]
-Finished [100%]: Average ELBO = -190.04
-100%|██████████| 5000/5000 [00:07&lt;00:00, 701.65it/s]
+Initializing NUTS using ADVI...
+Average Loss = 161.46: 100%|██████████| 200000/200000 [00:22&lt;00:00, 8980.38it/s]
+Finished [100%]: Average Loss = 161.47
+100%|██████████| 1000/1000 [00:00&lt;00:00, 1074.24it/s]
 </pre></div></div>
 </div>
 <p>The error distribution, if not specified via the <code class="docutils literal"><span class="pre">family</span></code> argument, is
@@ -1734,7 +1767,7 @@ assumed to be normal. In the case of logistic regression, this can be
 modified by passing in a <code class="docutils literal"><span class="pre">Binomial</span></code> family object.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [29]:
+<span></span>In [33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1743,10 +1776,12 @@ modified by passing in a <code class="docutils literal"><span class="pre">Binomi
 <span class="n">df_logistic</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="n">X1</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">Y</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">Y</span><span class="p">)})</span>
 
 <span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model_glm_logistic</span><span class="p">:</span>
-    <span class="n">glm</span><span class="p">(</span><span class="s1">&#39;y ~ x1&#39;</span><span class="p">,</span> <span class="n">df_logistic</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">Binomial</span><span class="p">())</span>
+    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;y ~ x1&#39;</span><span class="p">,</span> <span class="n">df_logistic</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">Binomial</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
+<p>For a more complete and flexible formula interface, including
+hierarchical GLMs, see <a class="reference external" href="https://github.com/bambinos/bambi">Bambi</a>.</p>
 </div>
 <div class="section" id="Backends">
 <h2>Backends<a class="headerlink" href="#Backends" title="Permalink to this headline">¶</a></h2>
@@ -1754,38 +1789,36 @@ modified by passing in a <code class="docutils literal"><span class="pre">Binomi
 after sampling, called backends, including in-memory (default), text
 file, and SQLite. These can be found in <code class="docutils literal"><span class="pre">pymc.backends</span></code>:</p>
 <p>By default, an in-memory <code class="docutils literal"><span class="pre">ndarray</span></code> is used but if the samples would
-get too large to be held in memory we could use the <code class="docutils literal"><span class="pre">sqlite</span></code> backend:</p>
-<div class="nbinput docutils container">
+get too large to be held in memory we could use the <code class="docutils literal"><span class="pre">hdf5</span></code> backend:</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [30]:
+<span></span>In [39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="kn">as</span> <span class="nn">pm</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">pymc3.backends</span> <span class="kn">import</span> <span class="n">SQLite</span>
 
 <span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model_glm_logistic</span><span class="p">:</span>
-    <span class="n">glm</span><span class="p">(</span><span class="s1">&#39;y ~ x1&#39;</span><span class="p">,</span> <span class="n">df_logistic</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">Binomial</span><span class="p">())</span>
+    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;y ~ x1&#39;</span><span class="p">,</span> <span class="n">df_logistic</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">Binomial</span><span class="p">())</span>
 
     <span class="n">backend</span> <span class="o">=</span> <span class="n">SQLite</span><span class="p">(</span><span class="s1">&#39;trace.sqlite&#39;</span><span class="p">)</span>
-    <span class="n">trace</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="n">trace</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="stderr output_area docutils container">
-<div class="highlight"><pre>
-Auto-assigning NUTS sampler...
-Initializing NUTS using advi...
-Average ELBO = -170.31: 100%|██████████| 200000/200000 [00:22&lt;00:00, 8858.79it/s]
-Finished [100%]: Average ELBO = -170.31
-100%|██████████| 5000/5000 [00:07&lt;00:00, 701.61it/s]
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [31]:
+<span></span>In [ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1793,31 +1826,10 @@ Finished [100%]: Average ELBO = -170.31
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-x1:
-
-  Mean             SD               MC Error         95% HPD interval
-  -------------------------------------------------------------------
-
-  0.000            0.129            0.001            [-0.253, 0.250]
-
-  Posterior quantiles:
-  2.5            25             50             75             97.5
-  |--------------|==============|==============|--------------|
-
-  -0.251         -0.089         0.001          0.090          0.253
-
-</pre></div></div>
-</div>
 <p>The stored trace can then later be loaded using the <code class="docutils literal"><span class="pre">load</span></code> command:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
-<span></span>In [32]:
+<span></span>In [ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3"><div class="highlight"><pre>
@@ -1927,7 +1939,7 @@ Biometrika, 66:191–193, 1979.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="api_quickstart.html" class="btn btn-neutral float-right" title="API quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../getting_started.html" class="btn btn-neutral" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

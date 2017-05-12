@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; PyMC3 3.0 documentation</title>
+  <title>&lt;no title&gt; &mdash; PyMC3 3.1rc3 documentation</title>
   
 
+  
+  
   
   
 
@@ -33,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PyMC3 3.0 documentation" href="../index.html"/> 
+    <link rel="top" title="PyMC3 3.1rc3 documentation" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -42,6 +44,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +64,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -82,7 +85,10 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
@@ -98,8 +104,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">PyMC3</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyMC3</a>
+        
       </nav>
 
 
@@ -108,23 +116,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
-    <li>&lt;no title&gt;</li>
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/notebooks/Untitled1.ipynb.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -136,13 +161,15 @@
 
 /* remove conflicting styling from Sphinx themes */
 div.nbinput,
-div.nbinput > div,
-div.nbinput div[class^=highlight],
-div.nbinput div[class^=highlight] pre,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
 div.nboutput,
-div.nboutput > div,
-div.nboutput div[class^=highlight],
-div.nboutput div[class^=highlight] pre {
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
     background: none;
     border: none;
     padding: 0 0;
@@ -151,7 +178,7 @@ div.nboutput div[class^=highlight] pre {
 }
 
 /* avoid gaps between output lines */
-div.nboutput div[class^=highlight] pre {
+div.nboutput div[class*=highlight] pre {
     line-height: normal;
 }
 
@@ -162,6 +189,13 @@ div.nboutput {
     display: flex;
     align-items: flex-start;
     margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
 }
 
 /* input container */
@@ -175,38 +209,58 @@ div.nblast {
 }
 
 /* input prompt */
-div.nbinput > :first-child pre {
+div.nbinput div.prompt pre {
     color: #303F9F;
 }
 
 /* output prompt */
-div.nboutput > :first-child pre {
+div.nboutput div.prompt pre {
     color: #D84315;
 }
 
 /* all prompts */
-div.nbinput > :first-child[class^=highlight],
-div.nboutput > :first-child[class^=highlight],
-div.nboutput > :first-child {
+div.nbinput div.prompt,
+div.nboutput div.prompt {
     min-width: 8ex;
     padding-top: 0.4em;
     padding-right: 0.4em;
     text-align: right;
     flex: 0;
 }
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
 
 /* input/output area */
-div.nbinput > :nth-child(2)[class^=highlight],
-div.nboutput > :nth-child(2),
-div.nboutput > :nth-child(2)[class^=highlight] {
+div.nbinput div.input_area,
+div.nboutput div.output_area {
     padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
 }
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
 
 /* input area */
-div.nbinput > :nth-child(2)[class^=highlight] {
+div.nbinput div.input_area {
     border: 1px solid #cfcfcf;
     border-radius: 2px;
     background: #f7f7f7;
@@ -223,7 +277,7 @@ div.nboutput div.math p {
 }
 
 /* standard error */
-div.nboutput  > :nth-child(2).stderr {
+div.nboutput div.output_area.stderr {
     background: #fdd;
 }
 
@@ -295,83 +349,154 @@ div.nboutput  > :nth-child(2).stderr {
     margin-right: 4px;  /* make room for the exclamation icon */
 }
 </style>
-<div class="nbinput container">
-<div class="highlight-none"><div class="highlight"><pre>
-<span></span>In [1]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
 </pre></div>
 </div>
-<div class="highlight-ipython3"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">pdist</span><span class="p">,</span> <span class="n">squareform</span>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="c1"># CREATE PYMC3 + THEANO IMPLEMENTATION OF A SIMPLE RECURRENT NETWORK</span>
+<span class="kn">import</span> <span class="nn">theano</span>
+<span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="kn">as</span> <span class="nn">T</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pymc3</span> <span class="kn">as</span> <span class="nn">pm</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mode</span>
+<span class="n">theano</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">compute_test_value</span> <span class="o">=</span> <span class="s1">&#39;ignore&#39;</span>
+<span class="n">input_dim</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">output_dim</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c1">### PARAMETERS OF THE MODEL ###</span>
+<span class="n">hidden_dim</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">nb_epochs</span> <span class="o">=</span> <span class="mi">10</span>
 
-<span class="k">class</span> <span class="nc">SVGD</span><span class="p">():</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+<span class="c1"># Initialization /placeholder values</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">dtensor3</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">dtensor3</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">svgd_kernel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">sq_dist</span> <span class="o">=</span> <span class="n">pdist</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-        <span class="n">pairwise_dists</span> <span class="o">=</span> <span class="n">squareform</span><span class="p">(</span><span class="n">sq_dist</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-        <span class="k">if</span> <span class="n">h</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># if h &lt; 0, using median trick</span>
-            <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">pairwise_dists</span><span class="p">)</span>
-            <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">theta</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="c1"># generate data</span>
+<span class="n">input_var</span> <span class="o">=</span> <span class="n">theano</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">train_input</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<span class="n">target_var</span> <span class="o">=</span> <span class="n">theano</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">train_output</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
 
-        <span class="c1"># compute the rbf kernel</span>
-        <span class="n">Kxy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span><span class="n">pairwise_dists</span> <span class="o">/</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Reference</span>
+<span class="c1"># From paper :IMPROVING PERFORMANCE OF RECURRENT NEURAL NETWORK WITH RELU NONLINEARITY</span>
+<span class="k">def</span> <span class="nf">norm_positive_definite</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">transpose</span><span class="p">())</span><span class="o">/</span><span class="n">hidden_dim</span>
+    <span class="n">values</span><span class="p">,</span> <span class="n">vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">Whh</span> <span class="o">=</span> <span class="n">A</span><span class="o">/</span><span class="n">e</span>
+    <span class="k">return</span> <span class="n">Whh</span>
 
-        <span class="n">dxkxy</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">Kxy</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
-        <span class="n">sumkxy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Kxy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">theta</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-            <span class="n">dxkxy</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dxkxy</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">theta</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span><span class="n">sumkxy</span><span class="p">)</span>
-        <span class="n">dxkxy</span> <span class="o">=</span> <span class="n">dxkxy</span> <span class="o">/</span> <span class="p">(</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">Kxy</span><span class="p">,</span> <span class="n">dxkxy</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">norm_weight</span><span class="p">(</span><span class="n">n_in</span><span class="p">,</span> <span class="n">n_out</span><span class="p">):</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">6.0</span><span class="o">/</span><span class="p">(</span><span class="n">n_in</span> <span class="o">+</span> <span class="n">n_out</span><span class="p">))</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">6.0</span><span class="o">/</span><span class="p">(</span><span class="n">n_in</span> <span class="o">+</span> <span class="n">n_out</span><span class="p">))</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">high</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n_in</span><span class="p">,</span><span class="n">n_out</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">W</span>
+<span class="c1"># weights of layer</span>
+<span class="c1"># initialize weights with random values</span>
+<span class="n">init_1</span> <span class="o">=</span> <span class="n">norm_weight</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">)</span>
+<span class="n">init_2</span> <span class="o">=</span> <span class="n">norm_weight</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">)</span>
+<span class="n">init_h</span> <span class="o">=</span> <span class="n">norm_positive_definite</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">)))</span>
 
 
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">lnprob</span><span class="p">,</span> <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">stepsize</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">debug</span> <span class="o">=</span> <span class="bp">False</span><span class="p">):</span>
-        <span class="c1"># Check input</span>
-        <span class="k">if</span> <span class="n">x0</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">lnprob</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;x0 or lnprob cannot be None!&#39;</span><span class="p">)</span>
+<span class="n">W1</span> <span class="o">=</span> <span class="n">theano</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span><span class="n">init_1</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">theano</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">floatX</span><span class="p">))</span>
+<span class="n">W2</span> <span class="o">=</span> <span class="n">theano</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span><span class="n">init_2</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">theano</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">floatX</span><span class="p">))</span>
+<span class="n">Wh</span> <span class="o">=</span> <span class="n">theano</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span><span class="n">init_h</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">theano</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">floatX</span><span class="p">))</span>
 
-        <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+<span class="c1"># layer 1 which creates recurrence</span>
+<span class="n">L1</span> <span class="o">=</span> <span class="n">theano</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">theano</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">floatX</span><span class="p">))</span>
 
-        <span class="c1"># adagrad with momentum</span>
-        <span class="n">fudge_factor</span> <span class="o">=</span> <span class="mf">1e-6</span>
-        <span class="n">historical_grad</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iter</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">debug</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">print</span> <span class="s1">&#39;iter &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># define step</span>
+<span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">l_tm1</span><span class="p">,</span> <span class="n">W1</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">Wh</span><span class="p">):</span>
+    <span class="n">layer1</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">nnet</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">W1</span><span class="p">)</span> <span class="o">+</span> <span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">l_tm1</span><span class="p">,</span> <span class="n">Wh</span><span class="p">))</span>
+    <span class="n">output_layer</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">nnet</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">layer1</span><span class="p">,</span> <span class="n">W2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">layer1</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">]</span>
 
-            <span class="n">lnpgrad</span> <span class="o">=</span> <span class="n">lnprob</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-            <span class="c1"># calculating the kernel matrix</span>
-            <span class="n">kxy</span><span class="p">,</span> <span class="n">dxkxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">svgd_kernel</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">grad_theta</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">kxy</span><span class="p">,</span> <span class="n">lnpgrad</span><span class="p">)</span> <span class="o">+</span> <span class="n">dxkxy</span><span class="p">)</span> <span class="o">/</span> <span class="n">x0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-            <span class="c1"># adagrad</span>
-            <span class="k">if</span> <span class="nb">iter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">historical_grad</span> <span class="o">=</span> <span class="n">historical_grad</span> <span class="o">+</span> <span class="n">grad_theta</span> <span class="o">**</span> <span class="mi">2</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">historical_grad</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">historical_grad</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">grad_theta</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-            <span class="n">adj_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">grad_theta</span><span class="p">,</span> <span class="n">fudge_factor</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">historical_grad</span><span class="p">))</span>
-            <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">+</span> <span class="n">stepsize</span> <span class="o">*</span> <span class="n">adj_grad</span>
+<span class="c1"># Computational graph</span>
+<span class="p">[</span><span class="n">layer1s</span><span class="p">,</span> <span class="n">predictions</span><span class="p">],</span> <span class="n">updates</span> <span class="o">=</span> <span class="n">theano</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">step</span><span class="p">,</span>
+                                        <span class="n">sequences</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">X</span><span class="p">,</span><span class="n">taps</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                                        <span class="n">outputs_info</span><span class="o">=</span><span class="p">[</span><span class="n">L1</span><span class="p">,</span> <span class="bp">None</span><span class="p">],</span>  <span class="c1"># same format as step function</span>
+                                        <span class="n">non_sequences</span><span class="o">=</span><span class="p">[</span><span class="n">W1</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">Wh</span><span class="p">])</span>
 
-        <span class="k">return</span> <span class="n">theta</span>
+<span class="k">def</span> <span class="nf">build_rnn</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Building network ...&quot;</span><span class="p">)</span>
+
+    <span class="n">W1</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;w_in_1&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                             <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">),</span>
+                             <span class="n">testval</span><span class="o">=</span><span class="n">init_1</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+    <span class="c1"># Weights from 1st to 2nd layer</span>
+    <span class="n">W2</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;w_2_out&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                            <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">),</span>
+                            <span class="n">testval</span><span class="o">=</span><span class="n">init_2</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+
+    <span class="c1"># Weights from hidden layer to output</span>
+    <span class="n">Wh</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;w_1_2&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                              <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span><span class="n">hidden_dim</span><span class="p">),</span>
+                              <span class="n">testval</span><span class="o">=</span><span class="n">init_h</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">theano</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">outputs</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">)</span>
+
+
+    <span class="k">return</span> <span class="n">prediction</span>
+
+<span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">rnn</span><span class="p">:</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">build_rnn</span><span class="p">()</span>
+    <span class="n">pres</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">(</span><span class="n">input_var</span><span class="o">.</span><span class="n">get_value</span><span class="p">())</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="s1">&#39;out&#39;</span><span class="p">,</span><span class="n">pres</span><span class="p">,</span><span class="n">observed</span><span class="o">=</span><span class="n">target_var</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">rnn</span><span class="p">:</span>
+    <span class="c1">#Run ADVI which returns posterior means, standard deviations,</span>
+    <span class="c1">#and the evidence lower bound (ELBO)</span>
+    <span class="n">v_params</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">variational</span><span class="o">.</span><span class="n">advi</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">variational</span><span class="o">.</span><span class="n">sample_vp</span><span class="p">(</span><span class="n">v_params</span><span class="p">,</span> <span class="n">draws</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+
+<span class="c1"># Replace shared variables with testing set</span>
+<span class="n">input_var</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">test_input</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<span class="n">target_var</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">test_output</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+
+<span class="k">with</span> <span class="n">rnn</span><span class="p">:</span>
+    <span class="c1"># Creater posterior predictive samples</span>
+    <span class="n">ppc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_ppc</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Use probability of &gt; 0.5 to assume prediction of class 1</span>
+
+<span class="n">pred</span> <span class="o">=</span> <span class="n">ppc</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Accuracy = {}%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">test_output</span> <span class="o">==</span> <span class="n">pred</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="n">stop</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="p">(</span><span class="s1">&#39;It took&#39;</span><span class="p">,</span> <span class="n">stop</span><span class="o">-</span><span class="n">start</span><span class="p">,</span> <span class="s1">&#39;secs&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast container">
-<div class="container">
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
 </div>
-<div class="container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;&lt;ipython-input-1-15f294479c23&gt;&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">39</span>
-<span class="ansi-red-fg">    print &#39;iter &#39; + str(iter+1)</span>
-                ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-2-79688cb98f36&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     20</span>
+<span class="ansi-green-intense-fg ansi-bold">     21</span> <span class="ansi-red-fg"># generate data</span>
+<span class="ansi-green-fg">---&gt; 22</span><span class="ansi-red-fg"> </span>input_var <span class="ansi-blue-fg">=</span> theano<span class="ansi-blue-fg">.</span>shared<span class="ansi-blue-fg">(</span>np<span class="ansi-blue-fg">.</span>asarray<span class="ansi-blue-fg">(</span>train_input<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>astype<span class="ansi-blue-fg">(</span>np<span class="ansi-blue-fg">.</span>float64<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     23</span> target_var <span class="ansi-blue-fg">=</span> theano<span class="ansi-blue-fg">.</span>shared<span class="ansi-blue-fg">(</span>np<span class="ansi-blue-fg">.</span>asarray<span class="ansi-blue-fg">(</span>train_output<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>astype<span class="ansi-blue-fg">(</span>np<span class="ansi-blue-fg">.</span>float64<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     24</span>
 
+<span class="ansi-red-fg">NameError</span>: name &#39;train_input&#39; is not defined
 </pre></div></div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -403,10 +528,11 @@ div.nboutput  > :nth-child(2).stderr {
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'3.0',
+            VERSION:'3.1rc3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

@@ -232,7 +232,7 @@ at the first item, preserving the order of the resulting generator</p>
 
 <dl class="class">
 <dt id="pymc3.data.DataSampler">
-<em class="property">class </em><code class="descclassname">pymc3.data.</code><code class="descname">DataSampler</code><span class="sig-paren">(</span><em>data</em>, <em>batchsize=50</em>, <em>seed=42</em>, <em>dtype='floatX'</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.DataSampler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pymc3.data.</code><code class="descname">DataSampler</code><span class="sig-paren">(</span><em>data</em>, <em>batchsize=50</em>, <em>random_seed=42</em>, <em>dtype='floatX'</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.DataSampler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenient picklable data sampler for minibatch inference.</p>
 <p>This generator can be used for passing to pm.generator
 creating picklable theano computational grapf</p>
@@ -243,7 +243,7 @@ creating picklable theano computational grapf</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>data</strong> (<em>array like</em>) &#8211; </li>
 <li><strong>batchsize</strong> (<em>sample size over zero axis</em>) &#8211; </li>
-<li><strong>seed</strong> (<em>int for numpy random generator</em>) &#8211; </li>
+<li><strong>random_seed</strong> (<em>int for numpy random generator</em>) &#8211; </li>
 <li><strong>dtype</strong> (<em>str representing dtype</em>) &#8211; </li>
 <li><strong>Usage</strong> &#8211; </li>
 <li><strong>-----</strong> &#8211; </li>

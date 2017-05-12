@@ -205,11 +205,11 @@ guide</a>!</p>
 <ul class="simple">
 <li>Intuitive model specification syntax, for example, <code class="docutils literal"><span class="pre">x</span> <span class="pre">~</span> <span class="pre">N(0,1)</span></code>
 translates to <code class="docutils literal"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">Normal('x',0,1)</span></code></li>
-<li><strong>Powerful sampling algorithms</strong>, such as the <a class="reference external" href="http://arxiv.org/abs/1111.4246">No U-Turn
+<li><strong>Powerful sampling algorithms</strong>, such as the <a class="reference external" href="http://www.jmlr.org/papers/v15/hoffman14a.html">No U-Turn
 Sampler</a>, allow complex models
 with thousands of parameters with little specialized knowledge of
 fitting algorithms.</li>
-<li><strong>Variational inference</strong>: <a class="reference external" href="http://arxiv.org/abs/1506.03431">ADVI</a>
+<li><strong>Variational inference</strong>: <a class="reference external" href="http://www.jmlr.org/papers/v18/16-107.html">ADVI</a>
 for fast approximate posterior estimation as well as mini-batch ADVI
 for large data sets.</li>
 <li><dl class="first docutils">
@@ -228,23 +228,22 @@ for large data sets.</li>
 </div>
 <div class="section" id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>If you already know about Bayesian statistics:</p>
 <ul class="simple">
+<li><a class="reference external" href="http://pymc-devs.github.io/pymc3/notebooks/api_quickstart.html">API quickstart guide</a></li>
 <li>The <a class="reference external" href="http://pymc-devs.github.io/pymc3/notebooks/getting_started.html">PyMC3 tutorial</a></li>
 <li><a class="reference external" href="http://pymc-devs.github.io/pymc3/examples.html">PyMC3 examples</a>
 and the <a class="reference external" href="http://pymc-devs.github.io/pymc3/api.html">API reference</a></li>
-<li><a class="reference external" href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers">Probabilistic Programming and Bayesian Methods for Hackers</a></li>
-<li><a class="reference external" href="https://github.com/markdregan/Bayesian-Modelling-in-Python">Bayesian Modelling in Python &#8211; tutorials on Bayesian statistics and
-PyMC3 as Jupyter Notebooks by Mark
-Dregan</a></li>
-<li><a class="reference external" href="https://www.youtube.com/watch?v=LlzVlqVzeD8">Talk at PyData London 2016 on
-PyMC3</a></li>
-<li><a class="reference external" href="https://github.com/aloctavodia/Doing_bayesian_data_analysis">PyMC3 port of the models presented in the book &#8220;Doing Bayesian Data
-Analysis&#8221; by John
-Kruschke</a></li>
-<li><a class="reference external" href="https://github.com/junpenglao/Bayesian-Cognitive-Modeling-in-Pymc3">PyMC3 port of the models presented in the book &#8220;Bayesian Cognitive Modeling&#8221; by Michael Lee and EJ Wagenmakers</a></li>
-<li><a class="reference external" href="http://adsabs.harvard.edu/abs/2016arXiv160700379C">Coyle P. (2016) Probabilistic programming and PyMC3. European Scientific Python Conference 2015 (Cambridge, UK)</a></li>
-<li><a class="reference external" href="https://www.packtpub.com/big-data-and-business-intelligence/bayesian-analysis-python">Bayesian Analysis with Python by Osvaldo Martin</a> (and <a class="reference external" href="https://github.com/aloctavodia/BAP">errata</a>)</li>
 </ul>
+<p>If you want to learn Bayesian statistics together with PyMC3:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers">Probabilistic Programming and Bayesian Methods for Hackers</a>: Fantastic book with many applied code examples.</li>
+<li><a class="reference external" href="https://github.com/aloctavodia/Doing_bayesian_data_analysis">PyMC3 port of the models presented in the book &#8220;Doing Bayesian Data Analysis&#8221; by John Kruschke</a>: Principled introduction to Bayesian data analysis.</li>
+<li><a class="reference external" href="https://github.com/aloctavodia/Statistical-Rethinking-with-Python-and-PyMC3">PyMC3 port of the examples in &#8220;Statistical Rethinking A Bayesian Course with Examples in R and Stan&#8221; by Richard McElreath</a></li>
+<li><a class="reference external" href="https://github.com/junpenglao/Bayesian-Cognitive-Modeling-in-Pymc3">PyMC3 port of the models presented in the book &#8220;Bayesian Cognitive Modeling&#8221; by Michael Lee and EJ Wagenmakers</a>: Focused on using Bayesian statistics in cognitive modeling.</li>
+<li><a class="reference external" href="https://www.packtpub.com/big-data-and-business-intelligence/bayesian-analysis-python">Bayesian Analysis with Python by Osvaldo Martin</a> (and <a class="reference external" href="https://github.com/aloctavodia/BAP">errata</a>): Great introduction.</li>
+</ul>
+<p>There are also several talks on PyMC3 which are gathered in this <a class="reference external" href="https://www.youtube.com/playlist?list=PL1Ma_1DBbE82OVW8Fz_6Ts1oOeyOAiovy">YouTube playlist</a></p>
 </div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
@@ -351,10 +350,19 @@ page</a></p>
 <li class="toctree-l3"><a class="reference internal" href="notebooks/getting_started.html#References">References</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/api_quickstart.html">API quickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/api_quickstart.html#1.-Model-creation">1. Model creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/api_quickstart.html#2.-Probability-Distributions">2. Probability Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/api_quickstart.html#3.-Inference">3. Inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/api_quickstart.html#4.-Posterior-Predictive-Sampling">4. Posterior Predictive Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/api_quickstart.html#4.1-Predicting-on-hold-out-data">4.1 Predicting on hold-out data</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#howto">Howto</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/api_quickstart.html">API quickstart</a></li>
 <li class="toctree-l3"><a class="reference internal" href="notebooks/sampler-stats.html">Sampler statistics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="notebooks/sampler-stats.html#Multiple-samplers">Multiple samplers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="notebooks/Diagnosing_biased_Inference_with_Divergences.html">Diagnosing Biased Inference with Divergences</a></li>
@@ -367,6 +375,7 @@ page</a></p>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#applied">Applied</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="notebooks/BEST.html">Bayesian Estimation Supersedes the T-Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/multilevel_modeling.html">A Primer on Bayesian Methods for Multilevel Modeling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="notebooks/stochastic_volatility.html">Stochastic Volatility model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="notebooks/rugby_analytics.html">A Hierarchical model for Rugby prediction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="notebooks/survival_analysis.html">Bayesian Survival Analysis</a></li>
@@ -401,7 +410,6 @@ page</a></p>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#variational-inference">Variational Inference</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="notebooks/GLM-hierarchical-ADVI.html">GLM: Hierarchical Linear Regression with ADVI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="notebooks/GLM-hierarchical-advi-minibatch.html">GLM: Mini-batch ADVI on hierarchical regression model</a></li>
 <li class="toctree-l3"><a class="reference internal" href="notebooks/lda-advi-aevb.html">Automatic autoencoding variational Bayes for latent dirichlet allocation with PyMC3</a></li>
 <li class="toctree-l3"><a class="reference internal" href="notebooks/bayesian_neural_network_advi.html">Variational Inference: Bayesian Neural Networks</a></li>

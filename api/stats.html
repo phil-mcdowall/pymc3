@@ -467,7 +467,7 @@ original variables (defaults to False).</li>
 
 <dl class="function">
 <dt id="pymc3.stats.df_summary">
-<code class="descclassname">pymc3.stats.</code><code class="descname">df_summary</code><span class="sig-paren">(</span><em>trace</em>, <em>varnames=None</em>, <em>stat_funcs=None</em>, <em>extend=False</em>, <em>include_transformed=False</em>, <em>alpha=0.05</em>, <em>batches=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.stats.df_summary" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pymc3.stats.</code><code class="descname">df_summary</code><span class="sig-paren">(</span><em>trace</em>, <em>varnames=None</em>, <em>transform=&lt;function &lt;lambda&gt;&gt;</em>, <em>stat_funcs=None</em>, <em>extend=False</em>, <em>include_transformed=False</em>, <em>alpha=0.05</em>, <em>start=0</em>, <em>batches=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.stats.df_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a data frame with summary statistics.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -476,6 +476,7 @@ original variables (defaults to False).</li>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>trace</strong> (<em>MultiTrace instance</em>) &#8211; </li>
 <li><strong>varnames</strong> (<em>list</em>) &#8211; Names of variables to include in summary</li>
+<li><strong>transform</strong> (<em>callable</em>) &#8211; Function to transform data (defaults to identity)</li>
 <li><strong>stat_funcs</strong> (<em>None</em><em> or </em><em>list</em>) &#8211; <p>A list of functions used to calculate statistics. By default,
 the mean, standard deviation, simulation standard error, and
 highest posterior density intervals are included.</p>
@@ -501,6 +502,8 @@ This is only meaningful when <cite>stat_funcs</cite> is not None.</li>
 to original variables (defaults to False).</li>
 <li><strong>alpha</strong> (<em>float</em>) &#8211; The alpha level for generating posterior intervals. Defaults
 to 0.05. This is only meaningful when <cite>stat_funcs</cite> is None.</li>
+<li><strong>start</strong> (<em>int</em>) &#8211; The starting index from which to summarize (each) chain. Defaults
+to zero.</li>
 <li><strong>batches</strong> (<em>None</em><em> or </em><em>int</em>) &#8211; Batch size for calculating standard deviation for non-independent
 samples. Defaults to the smaller of 100 or the number of samples.
 This is only meaningful when <cite>stat_funcs</cite> is None.</li>

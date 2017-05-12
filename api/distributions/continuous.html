@@ -460,7 +460,7 @@ the binomial distribution.</p>
 <em class="property">class </em><code class="descclassname">pymc3.distributions.continuous.</code><code class="descname">Laplace</code><span class="sig-paren">(</span><em>mu</em>, <em>b</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Laplace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Laplace log-likelihood.</p>
 <div class="math">
-\[f(x \mid \alpha, \beta) =
+\[f(x \mid \mu, b) =
     \frac{1}{2b} \exp \left\{ - \frac{|x - \mu|}{b} \right\}\]</div>
 <table border="1" class="docutils">
 <colgroup>
@@ -1113,6 +1113,39 @@ given by</p>
 <p>When alpha=0 we recover the Normal distribution and mu becomes the mean,
 tau the precision and sd the standard deviation. In the limit of alpha
 approaching plus/minus infinite we get a half-normal distribution.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pymc3.distributions.continuous.Interpolated">
+<em class="property">class </em><code class="descclassname">pymc3.distributions.continuous.</code><code class="descname">Interpolated</code><span class="sig-paren">(</span><em>x_points</em>, <em>pdf_points</em>, <em>transform='interval'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Interpolated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Probability distribution defined as a linear interpolation of
+of a set of points and values of probability density function
+evaluated on them.</p>
+<p>The points are not variables, but plain array-like objects, so
+they are constant and cannot be sampled.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Support</td>
+<td><span class="math">\(x \in [x_points[0], x_points[-1]]\)</span></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x_points</strong> (<em>array-like</em>) &#8211; A monotonically growing list of values</li>
+<li><strong>pdf_points</strong> (<em>array-like</em>) &#8211; Probability density function evaluated at points from <cite>x</cite></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
