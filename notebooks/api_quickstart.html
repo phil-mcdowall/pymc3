@@ -92,32 +92,34 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../getting_started.html">Getting started</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html">Getting started with PyMC3</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">API quickstart</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#1.-Model-creation">1. Model creation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#2.-Probability-Distributions">2. Probability Distributions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Unobserved-Random-Variables">Unobserved Random Variables</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Observed-Random-Variables">Observed Random Variables</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Deterministic-transforms">Deterministic transforms</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Automatic-transforms-of-bounded-RVs">Automatic transforms of bounded RVs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Lists-of-RVs-/-higher-dimensional-RVs">Lists of RVs / higher-dimensional RVs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Initialization-with-test_values">Initialization with test_values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../examples.html#howto">Howto</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">API quickstart</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#1.-Model-creation">1. Model creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2.-Probability-Distributions">2. Probability Distributions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#3.-Inference">3. Inference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#4.-Posterior-Predictive-Sampling">4. Posterior Predictive Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#4.1-Predicting-on-hold-out-data">4.1 Predicting on hold-out data</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#3.-Inference">3. Inference</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#3.1-Sampling">3.1 Sampling</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#3.2-Analyze-sampling-results">3.2 Analyze sampling results</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#3.3-Variational-inference">3.3 Variational inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sampler-stats.html">Sampler statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sampler-stats.html#Multiple-samplers">Multiple samplers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Diagnosing_biased_Inference_with_Divergences.html">Diagnosing Biased Inference with Divergences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="posterior_predictive.html">Posterior Predictive Checks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="howto_debugging.html">How to debug a model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyMC3_tips_and_heuristic.html">PyMC3 Modeling tips and heuristic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LKJ.html">LKJ Prior for fitting a Multivariate Normal Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="live_sample_plots.html">Live sample plots</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#4.-Posterior-Predictive-Sampling">4. Posterior Predictive Sampling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#4.1-Predicting-on-hold-out-data">4.1 Predicting on hold-out data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#applied">Applied</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#glm">GLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#gaussian-processes">Gaussian Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#mixture-models">Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples.html#variational-inference">Variational Inference</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
 </ul>
 
@@ -380,6 +382,9 @@ div.nboutput div.output_area.stderr {
 </style>
 <div class="section" id="API-quickstart">
 <h1>API quickstart<a class="headerlink" href="#API-quickstart" title="Permalink to this headline">¶</a></h1>
+<p>This guide assumes you already know the basics of Bayesian modeling. If
+you want a more formal introduction, see <a class="reference external" href="http://pymc-devs.github.io/pymc3/#getting-started">this
+list</a>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [1]:
@@ -615,6 +620,51 @@ class Normal(pymc3.distributions.distribution.Continuous)
 </div>
 <p>In the PyMC3 module, the structure for probability distributions looks
 like this:</p>
+<p><a class="reference external" href="http://pymc-devs.github.io/pymc3/api/distributions.html">pymc3.distributions</a>|-
+<a class="reference external" href="http://pymc-devs.github.io/pymc3/api/distributions/continuous.html">continuous</a>|-
+<a class="reference external" href="http://pymc-devs.github.io/pymc3/api/distributions/discrete.html">discrete</a>|-
+<a class="reference external" href="http://pymc-devs.github.io/pymc3/api/distributions/timeseries.html">timeseries</a>|-
+<a class="reference external" href="http://pymc-devs.github.io/pymc3/api/distributions/mixture.html">mixture</a></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [113]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="nb">dir</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">mixture</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[113]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>[&#39;Discrete&#39;,
+ &#39;Distribution&#39;,
+ &#39;Mixture&#39;,
+ &#39;Normal&#39;,
+ &#39;NormalMixture&#39;,
+ &#39;__builtins__&#39;,
+ &#39;__cached__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__file__&#39;,
+ &#39;__loader__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;__spec__&#39;,
+ &#39;all_discrete&#39;,
+ &#39;bound&#39;,
+ &#39;draw_values&#39;,
+ &#39;generate_samples&#39;,
+ &#39;get_tau_sd&#39;,
+ &#39;logsumexp&#39;,
+ &#39;np&#39;,
+ &#39;tt&#39;]
+</pre></div>
+</div>
+</div>
 <div class="section" id="Unobserved-Random-Variables">
 <h3>Unobserved Random Variables<a class="headerlink" href="#Unobserved-Random-Variables" title="Permalink to this headline">¶</a></h3>
 <p>Every unobserved RV has the following calling signature: name (str),
@@ -1165,9 +1215,9 @@ trace-plot:</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div id="c6e1e9a3-21a1-44d1-bd7f-537bdbdfeff5"></div>
+<div id="8a7f5e9d-b513-4456-9c66-66801eeaf18e"></div>
 <script type="text/javascript">
-var element = document.getElementById('c6e1e9a3-21a1-44d1-bd7f-537bdbdfeff5');
+var element = document.getElementById('8a7f5e9d-b513-4456-9c66-66801eeaf18e');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -1983,9 +2033,9 @@ statistic:</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div id="fa1218e3-3ed0-419e-a236-d6ed2605c949"></div>
+<div id="10ec4202-4f4e-4b3e-bf15-38bcd634197a"></div>
 <script type="text/javascript">
-var element = document.getElementById('fa1218e3-3ed0-419e-a236-d6ed2605c949');
+var element = document.getElementById('10ec4202-4f4e-4b3e-bf15-38bcd634197a');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -2779,9 +2829,9 @@ you can use the:</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div id="6850eb0d-b353-4227-b6ca-b606e8241716"></div>
+<div id="608ee7f7-c300-4f57-bfb1-8a8da808ddf9"></div>
 <script type="text/javascript">
-var element = document.getElementById('6850eb0d-b353-4227-b6ca-b606e8241716');
+var element = document.getElementById('608ee7f7-c300-4f57-bfb1-8a8da808ddf9');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -3590,9 +3640,9 @@ Finished [100%]: Average Loss = 0.054276
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div id="f2d51293-7b4a-4049-83e3-e149094f6bf7"></div>
+<div id="a2423ca4-7108-4c8c-b703-6b6c795e7746"></div>
 <script type="text/javascript">
-var element = document.getElementById('f2d51293-7b4a-4049-83e3-e149094f6bf7');
+var element = document.getElementById('a2423ca4-7108-4c8c-b703-6b6c795e7746');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -4471,9 +4521,9 @@ Finished [100%]: Average Loss = 0.0023797
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div id="401cba40-b53c-4155-81bd-d231d0aa7934"></div>
+<div id="9b407693-7891-421c-83a0-fdb5d55d337a"></div>
 <script type="text/javascript">
-var element = document.getElementById('401cba40-b53c-4155-81bd-d231d0aa7934');
+var element = document.getElementById('9b407693-7891-421c-83a0-fdb5d55d337a');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -5301,9 +5351,9 @@ estimate the posterior:</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div id="e730108c-2a7f-40ee-915a-55c430f1f3c7"></div>
+<div id="bbca34a4-117f-45a6-8456-01aee92f4c14"></div>
 <script type="text/javascript">
-var element = document.getElementById('e730108c-2a7f-40ee-915a-55c430f1f3c7');
+var element = document.getElementById('bbca34a4-117f-45a6-8456-01aee92f4c14');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -6172,9 +6222,9 @@ Finished [100%]: Average Loss = 139.81
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div id="57877492-bae0-4ca7-b13b-ba5220d5710d"></div>
+<div id="0d2d062a-746b-425c-9dad-02a72f268169"></div>
 <script type="text/javascript">
-var element = document.getElementById('57877492-bae0-4ca7-b13b-ba5220d5710d');
+var element = document.getElementById('0d2d062a-746b-425c-9dad-02a72f268169');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 

@@ -1220,7 +1220,7 @@ approximateinference.org/accepted/RoederEtAl2016.pdf</dd>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seed</strong> (<cite>int</cite>) &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>random_seed</strong> (<cite>int</cite>) &#8211; </td>
 </tr>
 </tbody>
 </table>
@@ -1372,7 +1372,7 @@ archiving better convergence properties. Common schedule is
 See (Sticking the Landing; Geoffrey Roeder,
 Yuhuai Wu, David Duvenaud, 2016) for details</li>
 <li><strong>scale_cost_to_minibatch</strong> (<cite>bool</cite>) &#8211; Scale cost to minibatch instead of full dataset, default False</li>
-<li><strong>seed</strong> (<em>None</em><em> or </em><em>int</em>) &#8211; leave None to use package global RandomStream or other
+<li><strong>random_seed</strong> (<em>None</em><em> or </em><em>int</em>) &#8211; leave None to use package global RandomStream or other
 valid value to create instance specific one</li>
 <li><strong>start</strong> (<cite>Point</cite>) &#8211; starting point for inference</li>
 </ul>
@@ -1622,17 +1622,17 @@ See (AEVB; Kingma and Welling, 2014) for details</li>
 <li><strong>local_rv</strong> (<em>dict</em><em>[</em><em>var-&gt;tuple</em><em>]</em><em></em>) &#8211; mapping {model_variable -&gt; local_variable (<span class="math">\(\mu\)</span>, <span class="math">\(\rho\)</span>)}
 Local Vars are used for Autoencoding Variational Bayes
 See (AEVB; Kingma and Welling, 2014) for details</li>
-<li><strong>method</strong> (str or <a class="reference internal" href="#pymc3.variational.inference.Inference" title="pymc3.variational.inference.Inference"><code class="xref py py-class docutils literal"><span class="pre">Inference</span></code></a>) &#8211; string name is case insensitive in {&#8216;advi&#8217;, &#8216;fullrank_advi&#8217;, &#8216;advi-&gt;fullrank_advi&#8217;}</li>
+<li><strong>method</strong> (str or <a class="reference internal" href="#pymc3.variational.inference.Inference" title="pymc3.variational.inference.Inference"><code class="xref py py-class docutils literal"><span class="pre">Inference</span></code></a>) &#8211; string name is case insensitive in {&#8216;advi&#8217;, &#8216;fullrank_advi&#8217;, &#8216;advi-&gt;fullrank_advi&#8217;, &#8216;svgd&#8217;}</li>
 <li><strong>model</strong> (<code class="xref py py-class docutils literal"><span class="pre">Model</span></code>) &#8211; PyMC3 model for inference</li>
+<li><strong>random_seed</strong> (<em>None</em><em> or </em><em>int</em>) &#8211; leave None to use package global RandomStream or other
+valid value to create instance specific one</li>
+<li><strong>start</strong> (<cite>Point</cite>) &#8211; starting point for inference</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Other Parameters:</th></tr>
 <tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
 <li><strong>frac</strong> (<cite>float</cite>) &#8211; if method is &#8216;advi-&gt;fullrank_advi&#8217; represents advi fraction when training</li>
-<li><strong>random_seed</strong> (<em>None or int</em>) &#8211; leave None to use package global RandomStream or other
-valid value to create instance specific one</li>
-<li><strong>start</strong> (<cite>Point</cite>) &#8211; starting point for inference</li>
 <li><strong>kwargs</strong> (kwargs for <a href="#id4"><span class="problematic" id="id5">:method:`Inference.fit`</span></a>)</li>
 </ul>
 </td>
@@ -1670,7 +1670,7 @@ archiving better convergence properties. Common schedule is
 See (Sticking the Landing; Geoffrey Roeder,
 Yuhuai Wu, David Duvenaud, 2016) for details</li>
 <li><strong>scale_cost_to_minibatch</strong> (<cite>bool</cite>) &#8211; Scale cost to minibatch instead of full dataset, default False</li>
-<li><strong>seed</strong> (<em>None</em><em> or </em><em>int</em>) &#8211; leave None to use package global RandomStream or other
+<li><strong>seed</strong> (<a class="reference internal" href="#pymc3.variational.opvi.ObjectiveFunction.random" title="pymc3.variational.opvi.ObjectiveFunction.random"><em>random</em></a>) &#8211; leave None to use package global RandomStream or other
 valid value to create instance specific one</li>
 </ul>
 </td>
@@ -1775,7 +1775,7 @@ Local Vars are used for Autoencoding Variational Bayes
 See (AEVB; Kingma and Welling, 2014) for details</li>
 <li><strong>scale_cost_to_minibatch</strong> (<cite>bool</cite>) &#8211; Scale cost to minibatch instead of full dataset, default False</li>
 <li><strong>model</strong> (<code class="xref py py-class docutils literal"><span class="pre">Model</span></code>) &#8211; PyMC3 model for inference</li>
-<li><strong>seed</strong> (<em>None</em><em> or </em><em>int</em>) &#8211; leave None to use package global RandomStream or other
+<li><strong>random_seed</strong> (<em>None</em><em> or </em><em>int</em>) &#8211; leave None to use package global RandomStream or other
 valid value to create instance specific one</li>
 <li><strong>Usage</strong> &#8211; </li>
 <li><strong>-----</strong> &#8211; </li>
@@ -1804,7 +1804,7 @@ Local Vars are used for Autoencoding Variational Bayes
 See (AEVB; Kingma and Welling, 2014) for details</li>
 <li><strong>start</strong> (<cite>Point</cite>) &#8211; initial point</li>
 <li><strong>model</strong> (<code class="xref py py-class docutils literal"><span class="pre">Model</span></code>) &#8211; PyMC3 model for inference</li>
-<li><strong>seed</strong> (<em>None</em><em> or </em><em>int</em>) &#8211; leave None to use package global RandomStream or other
+<li><strong>random_seed</strong> (<em>None</em><em> or </em><em>int</em>) &#8211; leave None to use package global RandomStream or other
 valid value to create instance specific one</li>
 <li><strong>kwargs</strong> (<em>other kwargs passed to init</em>) &#8211; </li>
 </ul>

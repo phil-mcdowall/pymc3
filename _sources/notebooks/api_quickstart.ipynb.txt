@@ -4,7 +4,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# API quickstart"
+    "# API quickstart\n",
+    "\n",
+    "This guide assumes you already know the basics of Bayesian modeling. If you want a more formal introduction, see [this list](http://pymc-devs.github.io/pymc3/#getting-started)."
    ]
   },
   {
@@ -266,7 +268,55 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "In the PyMC3 module, the structure for probability distributions looks like this:\n"
+    "In the PyMC3 module, the structure for probability distributions looks like this:\n",
+    "\n",
+    "[pymc3.distributions](http://pymc-devs.github.io/pymc3/api/distributions.html)<br>\n",
+    " |- [continuous](http://pymc-devs.github.io/pymc3/api/distributions/continuous.html)<br>\n",
+    " |- [discrete](http://pymc-devs.github.io/pymc3/api/distributions/discrete.html)<br>\n",
+    " |- [timeseries](http://pymc-devs.github.io/pymc3/api/distributions/timeseries.html)<br>\n",
+    " |- [mixture](http://pymc-devs.github.io/pymc3/api/distributions/mixture.html)<br>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 113,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['Discrete',\n",
+       " 'Distribution',\n",
+       " 'Mixture',\n",
+       " 'Normal',\n",
+       " 'NormalMixture',\n",
+       " '__builtins__',\n",
+       " '__cached__',\n",
+       " '__doc__',\n",
+       " '__file__',\n",
+       " '__loader__',\n",
+       " '__name__',\n",
+       " '__package__',\n",
+       " '__spec__',\n",
+       " 'all_discrete',\n",
+       " 'bound',\n",
+       " 'draw_values',\n",
+       " 'generate_samples',\n",
+       " 'get_tau_sd',\n",
+       " 'logsumexp',\n",
+       " 'np',\n",
+       " 'tt']"
+      ]
+     },
+     "execution_count": 113,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "dir(pm.distributions.mixture)"
    ]
   },
   {
