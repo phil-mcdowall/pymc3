@@ -179,6 +179,13 @@ class MvGaussianRandomWalk(distribution.Continuous):
     def __init__(self, mu=0., cov=None, tau=None, init=continuous.Flat.dist(),
                  *args, **kwargs):
         super(MvGaussianRandomWalk, self).__init__(*args, **kwargs)
+        if len([i for i in [tau,cov] if i is not None]) is not 1:
+            raise ValueError('Incompatible parameterization.'
+                             'Specify one of tau or cov.')
+        if cov is None:
+            cov = tt.nlinalg.matrix_inverse(tau)
+        if tau is None:
+            tau = tt.nlinalg.matrix_inverse(cov)
         tau, cov = multivariate.get_tau_cov(mu, tau=tau, cov=cov)
         self.tau = tau
         self.cov = cov
@@ -217,7 +224,13 @@ class MvStudentTRandomWalk(distribution.Continuous):
     def __init__(self, nu, mu=0., cov=None, tau=None, init=continuous.Flat.dist(),
                  *args, **kwargs):
         super(MvStudentTRandomWalk, self).__init__(*args, **kwargs)
-        tau, cov = multivariate.get_tau_cov(mu, tau=tau, cov=cov)
+        if len([i for i in [tau,cov] if i is not None]) is not 1:
+            raise ValueError('Incompatible parameterization.'
+                             'Specify one of tau or cov.')
+        if cov is None:
+            cov = tt.nlinalg.matrix_inverse(tau)
+        if tau is None:
+            tau = tt.nlinalg.matrix_inverse(cov)
         self.tau = tau
         self.cov = cov
         self.mu = mu
