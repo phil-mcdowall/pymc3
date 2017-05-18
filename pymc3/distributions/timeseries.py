@@ -186,7 +186,6 @@ class MvGaussianRandomWalk(distribution.Continuous):
             cov = tt.nlinalg.matrix_inverse(tau)
         if tau is None:
             tau = tt.nlinalg.matrix_inverse(cov)
-        tau, cov = multivariate.get_tau_cov(mu, tau=tau, cov=cov)
         self.tau = tau
         self.cov = cov
         self.mu = mu
@@ -248,3 +247,4 @@ class MvStudentTRandomWalk(distribution.Continuous):
         x_i = x[1:]
         innov_like = multivariate.MvStudentT.dist(nu, cov, mu=x_im1 + mu).logp(x_i)
         return init.logp(x[0]) + tt.sum(innov_like)
+
